@@ -8,7 +8,7 @@ import { BookForm } from './paginaAggiungiLibro'
 
 export const ListaLibriComponent = () => {
   const [listaLibri, setListaLibri] = useState([]);
-  const userId = 2;
+  const userId = 0;
   
   
   

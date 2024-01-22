@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import { Button } from 'primereact/button';
 
 export function BookForm() {
   const [bookData, setBookData] = useState({
@@ -92,8 +93,7 @@ export function BookForm() {
           required
         />
       </InputGroup>
-
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </Form>
   </div>
   );
