@@ -14,6 +14,7 @@ export const LoginSignup = () => {
   const [nome, setNome] = useState('');
   const [cognome, setCognome] = useState('');
   const navigate = useNavigate();
+  
 
   
 
@@ -22,7 +23,9 @@ export const LoginSignup = () => {
       const response = await axios.get(`http://localhost:8081/libro?nome=${nome}&cognome=${cognome}`);
       // Esegui le azioni desiderate in base alla risposta del server
       console.log(response.data);
-      navigate("/libri", { state: response.data }); 
+      window.localStorage.setItem("userId",response.data);
+      navigate("/libri"); 
+      
     } catch (error) {
       // Gestisci eventuali errori nella richiesta
       console.error('Errore durante il login:', error);
@@ -54,18 +57,18 @@ export const LoginSignup = () => {
             onChange={(e) => setCognome(e.target.value)}
           />
         </div>
-        <div className="input">
+        {/* <div className="input">
           <img src={email_icon} alt="" />
           <input type="email" placeholder='Email id' />
-        </div>
+        </div> */}
       </div>
-      <div className="forgot-password">Lost Password? <span>Click Here!</span></div>
+      {/* <div className="forgot-password">Lost Password? <span>Click Here!</span></div> */}
       <div className="submit-container">
-        <div className="submit" onClick={handleLogin}>
+        {/* <div className="submit" onClick={handleLogin}>
           Sign up
-        </div>
+        </div> */}
         <div className="submit" onClick={handleLogin}>
-        Login
+          Login
         </div>
       </div>
     </div>
