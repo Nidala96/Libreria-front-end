@@ -1,39 +1,36 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './LoginSignup.css';
-import { Link } from 'react-router-dom';
-import { ListaLibriComponent } from 'C:/Users/Nidala/Vs-Code/libreria/src/Components/ListaLibri/lista.jsx';
+import React, { useState } from "react";
+import axios from "axios";
+import "./LoginSignup.css";
 import { useNavigate } from "react-router-dom";
 
-
-import user_icon from '../Assets/person.png';
-import email_icon from '../Assets/email.png';
-import password_icon from '../Assets/password.png';
+import user_icon from "../Assets/person.png";
+import password_icon from "../Assets/password.png";
+import { toast } from 'react-toastify';
 
 export const LoginSignup = () => {
-  const [nome, setNome] = useState('');
-  const [cognome, setCognome] = useState('');
+  const [nome, setNome] = useState("");
+  const [cognome, setCognome] = useState("");
   const navigate = useNavigate();
-  
-
-  
 
   const handleLogin = async () => {
     try {
-      const response = await axios.get(`http://localhost:8081/libro?nome=${nome}&cognome=${cognome}`);
+      const response = await axios.get(
+        `http://localhost:8081/libro?nome=${nome}&cognome=${cognome}`
+      );
       // Esegui le azioni desiderate in base alla risposta del server
       console.log(response.data);
-      window.localStorage.setItem("userId",response.data);
-      navigate("/libri"); 
-      
+      window.localStorage.setItem("userId", response.data);
+      toast.success("Sei loggato!")
+      navigate("/libri");
     } catch (error) {
       // Gestisci eventuali errori nella richiesta
-      console.error('Errore durante il login:', error);
+      console.error("Errore durante il login:", error);
+      toast.error("Credenziali errate!")
     }
   };
 
   return (
-    <div className='container'>
+    <div className="container">
       <div className="header">
         <div className="text">Sign up</div>
         <div className="underline"></div>
@@ -43,7 +40,7 @@ export const LoginSignup = () => {
           <img src={user_icon} alt="" />
           <input
             type="text"
-            placeholder='Nome'
+            placeholder="Nome"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
           />
@@ -52,7 +49,7 @@ export const LoginSignup = () => {
           <img src={password_icon} alt="" />
           <input
             type="text"
-            placeholder='Cognome'
+            placeholder="Cognome"
             value={cognome}
             onChange={(e) => setCognome(e.target.value)}
           />
@@ -74,4 +71,3 @@ export const LoginSignup = () => {
     </div>
   );
 };
-
