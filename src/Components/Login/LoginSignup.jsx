@@ -15,7 +15,9 @@ export const LoginSignup = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/libro?nome=${nome}&cognome=${cognome}`
+        `${
+          process.env.REACT_APP_LOCAL_URL
+        }libro?nome=${nome}&cognome=${cognome}`
       );
       // Esegui le azioni desiderate in base alla risposta del server
       console.log(response.data);

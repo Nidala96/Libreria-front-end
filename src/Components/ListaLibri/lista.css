@@ -2,6 +2,7 @@
   color: #0096b5;
   font-size: 48px;
   font-weight: 700;
+  padding-top: 30px;
 }
 
 .underline {
@@ -30,5 +31,5 @@
 }
 
 .search-bar {
-  max-width: 95%;
+  max-width: 98.5%;
 }
