@@ -22,15 +22,25 @@
   padding: 8px;
 }
 
+.lateral-navbar li:hover {
+  background-color: #ddd;
+  cursor: pointer;
+  border-radius: 0.375rem;
+}
+
 .lateral-navbar a {
   text-decoration: none;
   color: #333;
   padding: 10px;
   border-radius: 5px;
   transition: background-color 0.3s;
+  
 }
 
 .lateral-navbar a:hover {
   background-color: #ddd;
   cursor: pointer;
+  background-image: none; 
+  transition: all 100s ease-in-out;
 }
+

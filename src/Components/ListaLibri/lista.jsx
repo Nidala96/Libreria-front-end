@@ -8,7 +8,7 @@ import { BookForm } from "./paginaAggiungiLibro";
 
 export const ListaLibriComponent = () => {
   const [listaLibri, setListaLibri] = useState([]);
-  const userId = 0;
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +28,7 @@ export const ListaLibriComponent = () => {
     };
 
     fetchData();
-  }, [userId]);
+  }, []);
 
   return (
     <div>

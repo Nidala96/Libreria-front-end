@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Button } from "react-bootstrap";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export function BookForm() {
   const [bookData, setBookData] = useState({
@@ -12,13 +12,19 @@ export function BookForm() {
     trama: "",
     numeroLettureComplete: 0,
   });
+  const [imageFile, setImageFile] = useState(null);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setBookData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const { name, value, type, files } = e.target;
+
+    if (type === "file") {
+      setImageFile(files[0]);
+    } else {
+      setBookData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async () => {
@@ -41,7 +47,8 @@ export function BookForm() {
       if (response.ok) {
         console.log("Book added successfully!");
         toast.success("Book added successfully!");
-        // You can reset the form or perform any other action upon successful submission
+        const libro = await response.json();
+        await addImageToBook(libro.id);
       } else {
         console.error("Failed to add book.");
         toast.error("Something wrong!");
@@ -50,7 +57,31 @@ export function BookForm() {
       console.error("Error:", error);
     }
   };
-
+  const addImageToBook = async (libroId) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", imageFile);
+  
+      const imageResponse = await fetch(
+        `http://localhost:8081/libro/add-libro-image/${libroId}`,
+        {
+          method: "PUT",
+          body: formData,
+        }
+      );
+  
+      if (imageResponse.ok) {
+        console.log("Image added successfully!");
+        toast.success("Image added successfully!");
+      } else {
+        console.error("Failed to add image.");
+        toast.error("Something wrong with image upload!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  
   return (
     <div>
       <h1 className="text">Aggiungi libro</h1>
@@ -82,7 +113,7 @@ export function BookForm() {
           <InputGroup.Text id="basic-addon3">Codice ISBN</InputGroup.Text>
           <Form.Control
             type="text"
-            placeholder="Title"
+            placeholder="ISBN"
             name="codiceISBN"
             value={bookData.codiceISBN}
             onChange={handleChange}
@@ -101,23 +132,20 @@ export function BookForm() {
           />
         </InputGroup>
         <Form.Group controlId="formFile" className="mb-3">
-        <Form.Control type="file" />
-      </Form.Group>
+          <Form.Control type="file" name="file" onChange={handleChange} />
+        </Form.Group>
         <Button
           style={{
             backgroundColor: "#0096b5",
             borderColor: "#0096b5",
             marginTop: 15,
           }}
-          variant="primary" onClick={handleSubmit}
+          variant="primary"
+          onClick={handleSubmit}
         >
-          
           Aggiungi
         </Button>
-        
       </Form>
     </div>
   );
 }
-
-export default BookForm;
