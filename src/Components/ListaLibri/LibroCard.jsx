@@ -17,7 +17,7 @@ export const LibroCard = ({ libro }) => {
     try {
       window.localStorage.setItem("libroId", libro.id);
       const response = await axios.delete(
-        `http://localhost:8081/libro/delete?utenteId=${window.localStorage.getItem(
+        `${process.env.REACT_APP_LOCAL_URL}libro/delete?utenteId=${window.localStorage.getItem(
           "userId"
         )}&libroId=${window.localStorage.getItem("libroId")}`
       );

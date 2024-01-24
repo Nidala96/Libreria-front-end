@@ -12,7 +12,7 @@ export const ListaLibriComponent = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/libro/get-libri?utenteId=${window.localStorage.getItem(
+           `${process.env.REACT_APP_LOCAL_URL}libro/get-libri?utenteId=${window.localStorage.getItem(
             "userId"
           )}`
         );

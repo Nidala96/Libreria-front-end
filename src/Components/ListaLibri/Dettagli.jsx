@@ -16,7 +16,7 @@ export const LibroDetail = () => {
     const fetchLibro = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8081/libro/get-libro/${window.localStorage.getItem(
+          `${process.env.REACT_APP_LOCAL_URL}libro/get-libro/${window.localStorage.getItem(
             "libroId"
           )}`
         );

@@ -32,7 +32,7 @@ export function BookForm() {
 
     try {
       const response = await fetch(
-        `http://localhost:8081/libro/save-book?utenteId=${window.localStorage.getItem(
+        `${process.env.REACT_APP_LOCAL_URL}libro/save-book?utenteId=${window.localStorage.getItem(
           "userId"
         )}`,
         {
@@ -63,7 +63,7 @@ export function BookForm() {
       formData.append("file", imageFile);
   
       const imageResponse = await fetch(
-        `http://localhost:8081/libro/add-libro-image/${libroId}`,
+        `${process.env.REACT_APP_LOCAL_URL}libro/add-libro-image/${libroId}`,
         {
           method: "PUT",
           body: formData,
