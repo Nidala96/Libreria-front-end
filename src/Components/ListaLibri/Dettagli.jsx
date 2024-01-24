@@ -79,28 +79,28 @@ export const LibroDetail = () => {
           <div className="underline"></div>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Titolo</Form.Label>
+              <Form.Label><strong>Titolo</strong></Form.Label>
               <Form.Control
                 type="text"
                 name="titolo"
                 value={modifiedLibro.titolo}
                 onChange={handleInputChange}
               />
-              <Form.Label>Autore</Form.Label>
+              <Form.Label><strong>Autore</strong></Form.Label>
               <Form.Control
                 type="text"
                 name="autore"
                 value={modifiedLibro.autore}
                 onChange={handleInputChange}
               />
-              <Form.Label>Codice ISBN:</Form.Label>
+              <Form.Label><strong>Codice ISBN</strong></Form.Label>
               <Form.Control
                 type="text"
                 name="codiceISBN"
                 value={modifiedLibro.codiceISBN}
                 onChange={handleInputChange}
               />
-              <Form.Label>Data aggiunta:</Form.Label>
+              <Form.Label><strong>Data aggiunta</strong></Form.Label>
               <Form.Control
                 type="text"
                 name="dataAggiunta"
@@ -111,7 +111,7 @@ export const LibroDetail = () => {
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
               >
-                <Form.Label>Trama</Form.Label>
+                <Form.Label><strong>Descrizione</strong></Form.Label>
                 <Form.Control
                   type="text"
                   name="trama"
@@ -121,7 +121,7 @@ export const LibroDetail = () => {
                   rows={5}
                 />
               </Form.Group>
-              <Form.Label>Numero letture:</Form.Label>
+              <Form.Label><strong>Numero letture</strong></Form.Label>
               <Form.Control
                 type="text"
                 name="numeroLettureComplete"
@@ -133,8 +133,8 @@ export const LibroDetail = () => {
           <>
           <Button
             style={{
-              backgroundColor: "#3c009d",
-              borderColor: "#3c009d",
+              backgroundColor: "#0096b5",
+              borderColor: "#0096b5",
               marginRight: 10,
             }}
             onClick={() => {
@@ -144,7 +144,7 @@ export const LibroDetail = () => {
           </Button>
           </>
           <Button
-            style={{ backgroundColor: "#3c009d", borderColor: "#3c009d" }}
+            style={{ backgroundColor: "#0096b5", borderColor: "#0096b5" }}
             onClick={handleCancelClick} 
           >
             Annulla
@@ -163,7 +163,7 @@ export const LibroDetail = () => {
           <p>{libro.trama}</p>
           <p class="body-descrizione"><strong>Numero letture:</strong> {libro.numeroLettureComplete}</p>
           <Button
-            style={{ backgroundColor: "#3c009d", borderColor: "#3c009d" }}
+            style={{ backgroundColor: "#0096b5", borderColor: "#0096b5" }}
             onClick={handleEditClick}
           >
             Modifica

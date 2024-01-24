@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import book_image from "../Assets/book.jpg";
+import book_image from '../Assets/missingBook.png';
 import "./libroCard.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -38,7 +38,7 @@ export const LibroCard = ({ libro }) => {
         padding: "8px",
       }}
     >
-      <Card.Img variant="top" src={libro.image !== null ? process.env.PUBLIC_URL+ "/" + libro.image.image : book_image } />
+      <Card.Img variant="top" src={libro.image !== null ? require('../Assets/' + libro.image.image) : book_image} />
       <Card.Body>
         <Card.Title class="titolo">{libro.titolo}</Card.Title>
         <Card.Text class="autore">{libro.autore}</Card.Text>
@@ -51,8 +51,8 @@ export const LibroCard = ({ libro }) => {
           </Card.Text>
           <Button
             style={{
-              backgroundColor: "#3c009d",
-              borderColor: "#3c009d",
+              backgroundColor: "#0096b5",
+              borderColor: "#0096b5",
               marginRight: 10,
             }}
             variant="primary"
@@ -61,7 +61,7 @@ export const LibroCard = ({ libro }) => {
             Details
           </Button>
           <Button
-            style={{ backgroundColor: "#3c009d", borderColor: "#3c009d" }}
+            style={{ backgroundColor: "#0096b5", borderColor: "#0096b5" }}
             variant="primary"
             onClick={handleDelete}
           >

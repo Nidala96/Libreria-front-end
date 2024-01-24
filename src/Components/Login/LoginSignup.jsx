@@ -64,7 +64,7 @@ export const LoginSignup = () => {
         {/* <div className="submit" onClick={handleLogin}>
           Sign up
         </div> */}
-        <div className="submit" onClick={handleLogin}>
+        <div style={{ backgroundColor: "#0096b5", borderColor: "#0096b5" }} className="submit" onClick={handleLogin}>
           Login
         </div>
       </div>

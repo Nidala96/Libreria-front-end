@@ -4,7 +4,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { Button } from "react-bootstrap";
 import { toast } from 'react-toastify';
 
-
 export function BookForm() {
   const [bookData, setBookData] = useState({
     titolo: "",
@@ -101,14 +100,18 @@ export function BookForm() {
             required
           />
         </InputGroup>
+        <Form.Group controlId="formFile" className="mb-3">
+        <Form.Control type="file" />
+      </Form.Group>
         <Button
           style={{
-            backgroundColor: "#3c009d",
-            borderColor: "#3c009d",
+            backgroundColor: "#0096b5",
+            borderColor: "#0096b5",
             marginTop: 15,
           }}
           variant="primary" onClick={handleSubmit}
         >
+          
           Aggiungi
         </Button>
         

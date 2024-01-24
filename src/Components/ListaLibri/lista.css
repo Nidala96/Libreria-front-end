@@ -1,5 +1,5 @@
 .text {
-  color: #3c009d;
+  color: #0096b5;
   font-size: 48px;
   font-weight: 700;
 }
@@ -7,7 +7,7 @@
 .underline {
   width: 61px;
   height: 6px;
-  background: #3c009d;
+  background: #0096b5;
   border-radius: 9px;
   margin-bottom: 30px;
 }
