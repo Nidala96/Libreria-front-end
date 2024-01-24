@@ -38,7 +38,9 @@ export const LibroDetail = () => {
   const handleSaveClick = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:8081/libro/mod-book?utenteId=${window.localStorage.getItem(
+        `${
+          process.env.REACT_APP_LOCAL_URL
+        }libro/mod-book?utenteId=${window.localStorage.getItem(
           "userId"
           
         )}&libroId=${window.localStorage.getItem("libroId")}`,
@@ -77,7 +79,7 @@ export const LibroDetail = () => {
           <h1 className="text">Modifica Libro</h1>
           <div className="underline"></div>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1" style={{maxWidth: "30%"}}>
               <Form.Label><strong>Titolo</strong></Form.Label>
               <Form.Control
                 type="text"
@@ -99,13 +101,13 @@ export const LibroDetail = () => {
                 value={modifiedLibro.codiceISBN}
                 onChange={handleInputChange}
               />
-              <Form.Label><strong>Data aggiunta</strong></Form.Label>
+              {/* <Form.Label><strong>Data aggiunta</strong></Form.Label>
               <Form.Control
                 type="text"
                 name="dataAggiunta"
                 value={modifiedLibro.dataAggiunta}
                 onChange={handleInputChange}
-              />
+              /> */}
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
@@ -153,6 +155,7 @@ export const LibroDetail = () => {
       ) : (
         <>
           <h1 className="text">Dettaglio Libro</h1>
+          <div className="underline"></div>
           <h2 class="dettaglio-titolo">{libro.titolo}</h2>
           <h4 class="dettaglio-autore">{libro.autore}</h4>
           <p><strong>ISBN: </strong>{libro.codiceISBN} <strong>Data Aggiunta:</strong>{" "}

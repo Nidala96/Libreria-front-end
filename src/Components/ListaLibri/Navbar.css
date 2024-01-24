@@ -2,7 +2,8 @@
   width: 230px;
   background: #f6f6f6;
   padding: 15px;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   font-family: Roboto, sans-serif;
 }
 
@@ -42,5 +43,19 @@
   cursor: pointer;
   background-image: none; 
   transition: all 100s ease-in-out;
+}
+
+.full-height-container {
+  height: 100%;
+}
+
+.flex-container {
+  display: flex;
+  
+}
+
+.body-container {
+  overflow-y: auto;
+  width: 98%;
 }
 

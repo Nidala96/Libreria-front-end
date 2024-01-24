@@ -32,9 +32,9 @@ export function BookForm() {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_LOCAL_URL}libro/save-book?utenteId=${window.localStorage.getItem(
-          "userId"
-        )}`,
+        `${
+          process.env.REACT_APP_LOCAL_URL
+        }libro/save-book?utenteId=${window.localStorage.getItem("userId")}`,
         {
           method: "POST",
           headers: {
@@ -61,7 +61,7 @@ export function BookForm() {
     try {
       const formData = new FormData();
       formData.append("file", imageFile);
-  
+
       const imageResponse = await fetch(
         `${process.env.REACT_APP_LOCAL_URL}libro/add-libro-image/${libroId}`,
         {
@@ -69,7 +69,7 @@ export function BookForm() {
           body: formData,
         }
       );
-  
+
       if (imageResponse.ok) {
         console.log("Image added successfully!");
         toast.success("Image added successfully!");
@@ -81,12 +81,12 @@ export function BookForm() {
       console.error("Error:", error);
     }
   };
-  
+
   return (
     <div>
       <h1 className="text">Aggiungi libro</h1>
       <div className="underline"></div>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{maxWidth: "30%"}}>
         <InputGroup className="mb-3">
           <InputGroup.Text id="basic-addon1">Titolo</InputGroup.Text>
           <Form.Control

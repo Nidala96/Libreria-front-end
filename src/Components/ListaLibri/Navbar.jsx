@@ -19,27 +19,38 @@ export const BrandExample = ({ body }) => {
     window.localStorage.removeItem("userId");
     navigate("/");
     console.log(navigate);
-    toast.success("Sei uscito!")
+    toast.success("Sei uscito!");
   };
 
   const writeCsv = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/libro/get-csv?utenteId=${window.localStorage.getItem(
-          "userId"
-        )}`
+        `http://localhost:8081/libro/get-csv?utenteId=${window.localStorage.getItem("userId")}`,
+        { responseType: 'blob' }  // Indica che la risposta è di tipo blob
       );
-      toast.success("CSV scaricato!")
+  
+      const blob = new Blob([response.data], { type: 'application/csv' });
+      const url = window.URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'libri.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+  
+      toast.success("CSV scaricato!");
     } catch (error) {
       console.error("Errore durante la creazione del CSV:", error);
       toast.error("Errore durante la creazione del CSV");
     }
   };
+  
 
   return (
-    <>
+    <div className="full-height-container">
       {window.localStorage.getItem("userId") ? (
-        <div style={{ display: "flex" }}>
+        <div className="flex-container">
           <div className="main-container">
             <div className="lateral-navbar">
               <h2>Libreria</h2>
@@ -65,12 +76,14 @@ export const BrandExample = ({ body }) => {
               </ul>
             </div>
           </div>
-          <div style={{ paddingTop: "30px", paddingLeft: "20px" }}>{body}</div>
+          <div className="body-container">
+            {body}
+          </div>
         </div>
       ) : (
         <Navigate to="/"></Navigate>
       )}
-    </>
+    </div>
   );
 };
 

@@ -17,7 +17,9 @@ export const LibroCard = ({ libro }) => {
     try {
       window.localStorage.setItem("libroId", libro.id);
       const response = await axios.delete(
-        `${process.env.REACT_APP_LOCAL_URL}libro/delete?utenteId=${window.localStorage.getItem(
+        `${
+          process.env.REACT_APP_LOCAL_URL
+        }libro/delete?utenteId=${window.localStorage.getItem(
           "userId"
         )}&libroId=${window.localStorage.getItem("libroId")}`
       );
@@ -39,11 +41,7 @@ export const LibroCard = ({ libro }) => {
     >
       <Card.Img
         variant="top"
-        src={
-          libro.image !== null
-            ? require("../Assets/" + libro.image.image)
-            : book_image
-        }
+        src={libro.image ? `data:image/png;base64,${libro.image.image}` : book_image}
         style={{ width: "100%", height: "200px", objectFit: "cover" }}
       />
       <Card.Body>
