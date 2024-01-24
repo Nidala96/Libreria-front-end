@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Card, Button } from "react-bootstrap";
-import { InputTextarea } from "primereact/inputtextarea";
+import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { format } from "date-fns";
 import "./dettagli.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export const LibroDetail = () => {
   const [libro, setLibro] = useState(null);

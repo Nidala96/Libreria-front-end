@@ -13,7 +13,8 @@
 }
 
 .main-container {
-  width: 300px;
+  padding-right: 30px;
+  
 }
 
 .titolo {
@@ -26,4 +27,8 @@
   text-align: center;
   font-weight: lighter;
   font-style: italic;
+}
+
+.search-bar {
+  max-width: 95%;
 }

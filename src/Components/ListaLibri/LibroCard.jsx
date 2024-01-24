@@ -30,7 +30,7 @@ export const LibroCard = ({ libro }) => {
   return (
     <Card
       style={{
-        width: "18rem",
+        width: "16rem",
         border: "1px solid #ccc",
         borderRadius: "8px",
         margin: "8px",
@@ -44,6 +44,7 @@ export const LibroCard = ({ libro }) => {
             ? require("../Assets/" + libro.image.image)
             : book_image
         }
+        style={{ width: "100%", height: "200px", objectFit: "cover" }}
       />
       <Card.Body>
         <Card.Title class="titolo">{libro.titolo}</Card.Title>

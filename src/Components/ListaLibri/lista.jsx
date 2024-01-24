@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
 import { LibroCard } from "./LibroCard";
-import { BrandExample } from "./Navbar";
 import "./lista.css";
-import { BookForm } from "./paginaAggiungiLibro";
+import Form from "react-bootstrap/Form";
 
 export const ListaLibriComponent = () => {
   const [listaLibri, setListaLibri] = useState([]);
-
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,12 +28,28 @@ export const ListaLibriComponent = () => {
     fetchData();
   }, []);
 
+  // Funzione per filtrare i libri in base al termine di ricerca
+  const filteredLibri = listaLibri.filter(
+    (libro) =>
+      libro.titolo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      libro.autore.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
       <h1 className="text">Lista libri</h1>
       <div className="underline"></div>
+      <Form.Control
+        className="search-bar"
+        type="text"
+        placeholder="Cerca libri..."
+        value={searchTerm}
+        style={{ paddingRight: 30 }}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <br />
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {listaLibri.map((libro) => (
+        {filteredLibri.map((libro) => (
           <LibroCard key={libro.id} libro={libro} />
         ))}
       </div>
