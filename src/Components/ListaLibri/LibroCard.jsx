@@ -40,7 +40,7 @@ export const LibroCard = ({ libro }) => {
       <Card.Img
         variant="top"
         src={libro.image ? `data:image/png;base64,${libro.image.image}` : book_image}
-        style={{ width: "100%", height: "200px", objectFit: "cover" }}
+        style={{ width: "100%", height: "250px", objectFit: "cover" }}
       />
       <Card.Body>
         <Card.Title class="titolo">{libro.titolo}</Card.Title>
