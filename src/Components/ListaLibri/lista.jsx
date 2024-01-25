@@ -12,9 +12,8 @@ export const ListaLibriComponent = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-           `${process.env.REACT_APP_LOCAL_URL}libro/get-libri?utenteId=${window.localStorage.getItem(
-            "userId"
-          )}`
+          `${process.env.REACT_APP_LOCAL_URL
+          }libro/get-libri?utenteId=${window.localStorage.getItem("userId")}`
         );
         setListaLibri(response.data);
       } catch (error) {

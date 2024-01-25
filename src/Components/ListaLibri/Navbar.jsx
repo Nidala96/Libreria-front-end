@@ -10,7 +10,7 @@ import {
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 export const BrandExample = ({ body }) => {
   const navigate = useNavigate();
@@ -25,27 +25,28 @@ export const BrandExample = ({ body }) => {
   const writeCsv = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/libro/get-csv?utenteId=${window.localStorage.getItem("userId")}`,
-        { responseType: 'blob' }  // Indica che la risposta è di tipo blob
+        `http://localhost:8081/libro/get-csv?utenteId=${window.localStorage.getItem(
+          "userId"
+        )}`,
+        { responseType: "blob" } // Indica che la risposta è di tipo blob
       );
-  
-      const blob = new Blob([response.data], { type: 'application/csv' });
+
+      const blob = new Blob([response.data], { type: "application/csv" });
       const url = window.URL.createObjectURL(blob);
-      
-      const a = document.createElement('a');
+
+      const a = document.createElement("a");
       a.href = url;
-      a.download = 'libri.csv';
+      a.download = "libri.csv";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-  
+
       toast.success("CSV scaricato!");
     } catch (error) {
       console.error("Errore durante la creazione del CSV:", error);
       toast.error("Errore durante la creazione del CSV");
     }
   };
-  
 
   return (
     <div className="full-height-container">
@@ -76,9 +77,7 @@ export const BrandExample = ({ body }) => {
               </ul>
             </div>
           </div>
-          <div className="body-container">
-            {body}
-          </div>
+          <div className="body-container">{body}</div>
         </div>
       ) : (
         <Navigate to="/"></Navigate>

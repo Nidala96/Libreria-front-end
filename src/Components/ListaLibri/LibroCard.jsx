@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import book_image from "../Assets/missingBook.png";
-import "./libroCard.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -17,8 +16,7 @@ export const LibroCard = ({ libro }) => {
     try {
       window.localStorage.setItem("libroId", libro.id);
       const response = await axios.delete(
-        `${
-          process.env.REACT_APP_LOCAL_URL
+        `${process.env.REACT_APP_LOCAL_URL
         }libro/delete?utenteId=${window.localStorage.getItem(
           "userId"
         )}&libroId=${window.localStorage.getItem("libroId")}`

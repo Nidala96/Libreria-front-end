@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Navigazione } from "./Routes";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,7 +5,7 @@ import { PrimeReactProvider, PrimeReactContext } from "primereact/api";
 import "primereact/resources/themes/saga-purple/theme.css";
 import "primereact/resources/primereact.css";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 function App({ Component, pageProps }) {
   return (

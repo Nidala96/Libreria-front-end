@@ -28,12 +28,10 @@ export function BookForm() {
   };
 
   const handleSubmit = async () => {
-    // e.preventDefault();
 
     try {
       const response = await fetch(
-        `${
-          process.env.REACT_APP_LOCAL_URL
+        `${process.env.REACT_APP_LOCAL_URL
         }libro/save-book?utenteId=${window.localStorage.getItem("userId")}`,
         {
           method: "POST",
@@ -86,7 +84,7 @@ export function BookForm() {
     <div>
       <h1 className="text">Aggiungi libro</h1>
       <div className="underline"></div>
-      <Form onSubmit={handleSubmit} style={{maxWidth: "30%"}}>
+      <Form onSubmit={handleSubmit} style={{ maxWidth: "30%" }}>
         <InputGroup className="mb-3">
           <InputGroup.Text id="basic-addon1">Titolo</InputGroup.Text>
           <Form.Control
