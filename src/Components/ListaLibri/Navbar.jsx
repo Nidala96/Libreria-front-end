@@ -25,7 +25,8 @@ export const BrandExample = ({ body }) => {
   const writeCsv = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/libro/get-csv?utenteId=${window.localStorage.getItem(
+        `${process.env.REACT_APP_LOCAL_URL
+        }libro/get-csv?utenteId=${window.localStorage.getItem(
           "userId"
         )}`,
         { responseType: "blob" } // Indica che la risposta è di tipo blob
