@@ -14,9 +14,9 @@ import { toast } from "react-toastify";
 
 export const BrandExample = ({ body }) => {
   const navigate = useNavigate();
-  const userId = window.localStorage.getItem("userId");
+  const token = window.localStorage.getItem("token");
   const handleLogout = () => {
-    window.localStorage.removeItem("userId");
+    window.localStorage.removeItem("token");
     navigate("/");
     console.log(navigate);
     toast.success("Sei uscito!");
@@ -26,10 +26,14 @@ export const BrandExample = ({ body }) => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_LOCAL_URL
-        }libro/get-csv?utenteId=${window.localStorage.getItem(
-          "userId"
-        )}`,
-        { responseType: "blob" } // Indica che la risposta è di tipo blob
+        }libro/get-csv`,
+        {
+          responseType: "blob",
+          headers: {
+            accept: `*/*` ,
+            Authorization: `Bearer ${token}`,  
+          },
+        } // Indica che la risposta è di tipo blob
       );
 
       const blob = new Blob([response.data], { type: "application/csv" });
@@ -51,7 +55,7 @@ export const BrandExample = ({ body }) => {
 
   return (
     <div className="full-height-container">
-      {window.localStorage.getItem("userId") ? (
+      {window.localStorage.getItem("token") ? (
         <div className="flex-container">
           <div className="main-container">
             <div className="lateral-navbar">

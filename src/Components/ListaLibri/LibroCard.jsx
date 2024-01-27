@@ -3,6 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import book_image from "../Assets/missingBook.png";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const token = window.localStorage.getItem("token");
 
 export const LibroCard = ({ libro }) => {
   const navigate = useNavigate();
@@ -17,9 +18,13 @@ export const LibroCard = ({ libro }) => {
       window.localStorage.setItem("libroId", libro.id);
       const response = await axios.delete(
         `${process.env.REACT_APP_LOCAL_URL
-        }libro/delete?utenteId=${window.localStorage.getItem(
-          "userId"
-        )}&libroId=${window.localStorage.getItem("libroId")}`
+        }libro/delete?libroId=${window.localStorage.getItem("libroId")}`,
+        {
+          headers: {
+            accept: `*/*` ,
+            Authorization: `Bearer ${token}`,  
+          },
+        }
       );
       window.location.reload(false);
     } catch (error) {
@@ -43,12 +48,12 @@ export const LibroCard = ({ libro }) => {
         style={{ width: "100%", height: "250px", objectFit: "cover" }}
       />
       <Card.Body>
-        <Card.Title class="titolo">{libro.titolo}</Card.Title>
-        <Card.Text class="autore">{libro.autore}</Card.Text>
+        <Card.Title className="titolo">{libro.titolo}</Card.Title>
+        <Card.Text className="autore">{libro.autore}</Card.Text>
         {/* <Card.Text>
           <strong>ISBN:</strong> {libro.codiceISBN}
         </Card.Text> */}
-        <div class="text-center">
+        <div className="text-center">
           <Card.Text>
             <strong>Numero letture:</strong> {libro.numeroLettureComplete}
           </Card.Text>

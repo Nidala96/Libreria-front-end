@@ -7,20 +7,22 @@ import Form from "react-bootstrap/Form";
 export const ListaLibriComponent = () => {
   const [listaLibri, setListaLibri] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const token = window.localStorage.getItem("token");
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_LOCAL_URL
-          }libro/get-libri?utenteId=${window.localStorage.getItem("userId")}`
+          `${process.env.REACT_APP_LOCAL_URL}libro/get-libri`,
+          {
+            headers: {
+              accept: `*/*` ,
+              Authorization: `Bearer ${token}`,  
+            },
+          }
         );
         setListaLibri(response.data);
       } catch (error) {
-        console.error(
-          "Errore durante il recupero della lista dei libri:",
-          error
-        );
+        console.error("Errore durante il recupero dei libri:", error);
       }
     };
 

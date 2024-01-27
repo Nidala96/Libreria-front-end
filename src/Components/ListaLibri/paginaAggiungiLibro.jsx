@@ -13,7 +13,7 @@ export function BookForm() {
     numeroLettureComplete: 0,
   });
   const [imageFile, setImageFile] = useState(null);
-
+  const token = window.localStorage.getItem("token");
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
 
@@ -32,11 +32,13 @@ export function BookForm() {
     try {
       const response = await fetch(
         `${process.env.REACT_APP_LOCAL_URL
-        }libro/save-book?utenteId=${window.localStorage.getItem("userId")}`,
+        }libro/save-book`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            accept: `*/*` ,
+            Authorization: `Bearer ${token}`
           },
           body: JSON.stringify(bookData),
         }

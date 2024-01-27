@@ -10,13 +10,20 @@ export const LibroDetail = () => {
   const [libro, setLibro] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [modifiedLibro, setModifiedLibro] = useState({});
-
+  const token = window.localStorage.getItem("token");
   useEffect(() => {
     const fetchLibro = async () => {
       try {
+
         const response = await axios.get(
           `${process.env.REACT_APP_LOCAL_URL
-          }libro/get-libro/${window.localStorage.getItem("libroId")}`
+          }libro/get-libro/${window.localStorage.getItem("libroId")
+          }`, {
+          headers: {
+            accept: `*/*`,
+            Authorization: `Bearer ${token}`,
+          },
+        }
         );
         console.log(window.localStorage.getItem("userId"));
         setLibro(response.data);
@@ -25,7 +32,6 @@ export const LibroDetail = () => {
         console.error("Errore durante il recupero del libro", error);
       }
     };
-
     fetchLibro();
   }, []);
 
@@ -37,10 +43,14 @@ export const LibroDetail = () => {
     try {
       const response = await axios.put(
         `${process.env.REACT_APP_LOCAL_URL
-        }libro/mod-book?utenteId=${window.localStorage.getItem(
-          "userId"
-        )}&libroId=${window.localStorage.getItem("libroId")}`,
-        modifiedLibro
+        }libro/mod-book?libroId=${window.localStorage.getItem("libroId")}`,
+        modifiedLibro,
+        {
+          headers: {
+            accept: `*/*`,
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       setLibro(modifiedLibro);
       setIsEditing(false);
@@ -156,19 +166,19 @@ export const LibroDetail = () => {
         <>
           <h1 className="text">Dettaglio Libro</h1>
           <div className="underline"></div>
-          <h2 class="dettaglio-titolo">{libro.titolo}</h2>
-          <h4 class="dettaglio-autore">{libro.autore}</h4>
+          <h2 className="dettaglio-titolo">{libro.titolo}</h2>
+          <h4 className="dettaglio-autore">{libro.autore}</h4>
           <p>
             <strong>ISBN: </strong>
             {libro.codiceISBN} <strong>Data Aggiunta:</strong>{" "}
             {libro.dataAggiunta !== null ? format(libro.dataAggiunta, "MMMM do yyyy") : ""}
           </p>
-          <p class="dettaglio-descrizione">
+          <p className="dettaglio-descrizione">
             <strong>Descrizione</strong>
           </p>
           <div className="underline"></div>
           <p>{libro.trama}</p>
-          <p class="body-descrizione">
+          <p className="body-descrizione">
             <strong>Numero letture:</strong> {libro.numeroLettureComplete}
           </p>
           <Button
