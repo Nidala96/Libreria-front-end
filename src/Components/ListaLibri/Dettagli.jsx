@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import "./dettagli.css";
 import { toast } from "react-toastify";
 
+
 export const LibroDetail = () => {
   const [libro, setLibro] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
