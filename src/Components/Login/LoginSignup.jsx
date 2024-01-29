@@ -97,7 +97,7 @@ export const LoginSignup = () => {
               <img src={user_icon} alt="" />
               <input
                 type="text"
-                placeholder="Nome"
+                placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
